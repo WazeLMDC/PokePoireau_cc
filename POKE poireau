@@ -1,0 +1,45 @@
+/**
+ * Bienvenue sur Leek Wars !
+ * Pour connaître le fonctionnement du jeu : leekwars.com/help/general
+ * Pour apprendre le langage LeekScript : leekwars.com/help/tutorial et leekwars.com/encyclopedia/Tutoriel_LeekScript
+ * Pour progresser en fonction de son niveau (dès le niveau 1) : leekwars.com/encyclopedia/Tutoriel_par_niveau
+ * Pour se documenter sur les fonctions disponibles : leekwars.com/help/documentation
+**/
+
+// Ceci est un code d'exemple très basique :
+
+// On prend le pistolet
+setWeapon(WEAPON_PISTOL); // Attention : coûte 1 PT
+
+// On récupère l'ennemi le plus proche
+var enemy = getNearestEnemy();
+
+// On avance vers l'ennemi
+moveToward(enemy);
+
+// On essaye de lui tirer dessus !
+useWeapon(enemy);
+
+// Take the pistol
+if (getTurn() == 1) {
+setWeapon(WEAPON_PISTOL);
+}
+
+// Move towards him
+moveToward(enemy,2);
+// Try to soot him
+useWeapon(enemy);
+// Move away
+moveAwayFrom(enemy, 1);
+
+// Try to shoot him!
+var my_tp = getTP();
+var shoot = USE_SUCCESS;
+while(my_tp >= 3 and shoot != USE_INVALID_POSITION) {
+shoot = useWeapon(enemy);
+my_tp = getTP();
+}
+
+var pos_enemy = getCell(enemy);
+var pos_player = getCell();
+var dist = getCellDistance(pos_player, pos_enemy);
