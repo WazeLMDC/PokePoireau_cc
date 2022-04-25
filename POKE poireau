@@ -6,13 +6,31 @@
  * Pour se documenter sur les fonctions disponibles : leekwars.com/help/documentation
 **/
 
-// Ceci est un code d'exemple très basique :
+// On récupère l'ennemi le plus proche
+var enemy = getNearestEnemy();
 
+var pos_enemy = getCell(enemy);
+var pos_player = getCell();
+var dist = getCellDistance(pos_player, pos_enemy);
+
+// health
+var Life = getTotalLife();
+var life_now = getLife();
+var my_leek = getEntity();
+
+
+// use bandage
+if(getTotalLife() > getLife()) {
+	useChip(CHIP_BANDAGE, getEntity());
+}
+
+// Use Chip_Shock
+if (dist <= 6){
+	useChip(CHIP_SHOCK, enemy);
+}
 // On prend le pistolet
 setWeapon(WEAPON_PISTOL); // Attention : coûte 1 PT
 
-// On récupère l'ennemi le plus proche
-var enemy = getNearestEnemy();
 
 // On avance vers l'ennemi
 moveToward(enemy);
@@ -22,7 +40,7 @@ useWeapon(enemy);
 
 // Take the pistol
 if (getTurn() == 1) {
-setWeapon(WEAPON_PISTOL);
+	setWeapon(WEAPON_PISTOL);
 }
 
 // Move towards him
@@ -40,6 +58,4 @@ shoot = useWeapon(enemy);
 my_tp = getTP();
 }
 
-var pos_enemy = getCell(enemy);
-var pos_player = getCell();
-var dist = getCellDistance(pos_player, pos_enemy);
+
